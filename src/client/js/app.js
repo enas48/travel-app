@@ -167,7 +167,7 @@ const getCountryInfo = async location => {
 
 const getGeonmaes = async location => {
   // Personal API Key for geonames API
-  let baseUrl = 'https://api.geonames.org/searchJSON?q=';
+  let baseUrl = 'https://cors-anywhere.herokuapp.com/http://api.geonames.org/searchJSON?q=';
   let key = '&maxRows=10&username=enas48';
   let city = location.value;
   const res = await fetch(baseUrl + city + key);
