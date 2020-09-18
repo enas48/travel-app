@@ -7,7 +7,7 @@ This project is to create travel app that, at a minimum, obtains a desired trip 
 ![app review](https://github.com/enas48/travel-app/raw/master/src/client/media/demo.png)
 
 ## demo
-* [travel app live demo](https://5f64dd6c39c5d90007fe0d9f--kind-shaw-0432f0.netlify.app/)
+* [travel app live demo](https://5f64e0ebebdc5c00078a0f52--kind-shaw-0432f0.netlify.app/)
 
 ----
 ## instructions
