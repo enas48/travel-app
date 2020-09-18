@@ -1,0 +1,108 @@
+/*---------Mixin to prefix a property--------*/
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+  // Output standard non-prefixed declaration
+  #{$property}: $value;
+}
+
+/* ---- Base Rules ---- */
+* {
+  @include prefix(box-sizing, border-box, webkit moz ms);
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #bde4f6;
+  background: -webkit-linear-gradient(to bottom, #f2fcfe, #bde4f6);
+  background: linear-gradient(to bottom, #f2fcfe, #bde4f6);
+  font-family: 'Bitter', serif;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+ul {
+  list-style-type: none;
+  width: 100%;
+  border-top: 2px solid #fff;
+  li {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 5px;
+    padding: 4px;
+    span,
+    canvas {
+      padding: 10px;
+    }
+  }
+}
+/* Typeography General*/
+h1 {
+  font-size: 2em;
+  text-transform: capitalize;
+  text-align: center;
+}
+h2 {
+  margin-bottom: 20px;
+  text-transform: capitalize;
+  font-size: 1em;
+}
+p {
+  text-transform: capitalize;
+  font-size: 0.8em;
+  line-height: 1.6;
+}
+@media only screen and (min-width: 35em) {
+  h1 {
+    font-size: 3em;
+  }
+  h2 {
+    font-size: 1.2em;
+  }
+  p {
+    font-size: 1.2em;
+    line-height: 1.6;
+  }
+}
+
+/* color General */
+$main-color: #29abe2;
+$background-color: #ace0f9;
+$text-color: #333;
+
+/* layout rules*/
+#app {
+  display: grid;
+  grid-template-rows: auto;
+  grid-gap: 20px;
+  margin: 20px;
+  font-size: 1.4em;
+  font-family: 'Bitter', serif;
+}
+
+.active {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.error {
+  background-color: #172979;
+  color: #fff;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  text-transform: capitalize;
+  top: 0;
+  padding: 20px;
+  transition: all 1s ease-in-out;
+  z-index: 2;
+  display: none;
+  text-align: center;
+  width: 50%;
+}
