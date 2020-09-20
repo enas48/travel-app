@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 //require('webpack-jquery-ui/css');
 module.exports = {
   entry: './src/client/index.js',
@@ -56,6 +56,8 @@ module.exports = {
       template: './src/client/views/index.html',
       filename: './index.html'
     }),
+
+    new FaviconsWebpackPlugin({logo: './src/client/favicon.png',inject: true,}),
     new CleanWebpackPlugin({
       // Simulate the removal of files
       dry: true,

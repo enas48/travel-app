@@ -56,16 +56,14 @@ function getTripInfo(location) {
     '.';
   let timestep = Math.floor(new Date(departDay).getTime() / 1000);
 
-
+const projectData={city: city,
+  dayDiff: dayDiff,
+  triplength: triplength,
+  departDate: departDate,
+  returnDate: returnDate,
+  timestep: timestep}
   //post trip information data to server
-  postData('http://localhost:3000/addTripInfo', {
-    city: city,
-    dayDiff: dayDiff,
-    triplength: triplength,
-    departDate: departDate,
-    returnDate: returnDate,
-    timestep: timestep
-  });
+  //postData('http://localhost:3000/addTripInfo', projectData); //for development 
 
 
   // update trip information section
@@ -191,15 +189,13 @@ const getWeather = async data => {
   let unit = '?units=si';
   let lat = data.lat;
   let lng = data.lng;
-  // get trip info date from the server to use it
-  const allData = await fetch('http://localhost:3000/all').then(response =>
-    response.json()
-  );
-  try {
-    console.log(allData);
+  let departDay = document.getElementById('depart-date').value;
+  let today = new Date();
+  const dayDiff = Client.diffDays(today, departDay);
+  let timestep = Math.floor(new Date(departDay).getTime() / 1000);
 
     // current forcast weather + weather for week
-    if (allData.dayDiff >= 0 && allData.dayDiff <= 7) {
+    if (dayDiff >= 0 && dayDiff <= 7) {
       const res = await fetch(baseUrl + key + lat + ',' + lng + unit);
       try {
         const weatherData = await res.json();
@@ -214,14 +210,14 @@ const getWeather = async data => {
         <h2>weather for then is:</h2>
         <div class="current-weather">
           <p>high:<span>${Math.round(
-            weatherData.daily.data[allData.dayDiff].temperatureHigh
+            weatherData.daily.data[dayDiff].temperatureHigh
           )}°</span></p>
           <p>low:<span>${Math.round(
-            weatherData.daily.data[allData.dayDiff].temperatureLow
+            weatherData.daily.data[dayDiff].temperatureLow
           )}°</span></p>
-          <p>${weatherData.daily.data[allData.dayDiff].summary}</p>
+          <p>${weatherData.daily.data[dayDiff].summary}</p>
           <canvas class="${
-            weatherData.daily.data[allData.dayDiff].icon
+            weatherData.daily.data[dayDiff].icon
           }" width="64" height="64"></canvas>
            </div>
             ${Client.forcastWeather(forcast).outerHTML}    
@@ -239,10 +235,10 @@ const getWeather = async data => {
     }
 
     // predict forcast weather
-    else if (allData.dayDiff > 7) {
+    else if (dayDiff > 7) {
       console.log('predict');
       const res = await fetch(
-        baseUrl + key + lat + ',' + lng + ',' + allData.timestep + unit
+        baseUrl + key + lat + ',' + lng + ',' + timestep + unit
       );
       try {
         const predictData = await res.json();
@@ -301,9 +297,7 @@ const getWeather = async data => {
         console.log('error', error);
       }
     }
-  } catch (error) {
-    console.log('error', error);
-  }
+
 };
 
 
@@ -313,8 +307,7 @@ const getWeather = async data => {
 const postData = async (url = '', data = {}) => {
   const response = await fetch(url, {
     method: 'POST',
-    credentials: 'omit',
-    mode: 'cors', 
+    credentials: 'same-origin',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   });

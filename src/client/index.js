@@ -12,6 +12,6 @@ import './styles/form.scss';
 import './media/logo.png';
 import './media/calander.png';
 import './media/location.png';
-import './media/Spin-Preloader.gif'
-import './media/favicon.ico'
+import './media/Spin-Preloader.gif';
+import './favicon.png';
 export { performAction, formValidate, setIcons, diffDays, forcastWeather };
