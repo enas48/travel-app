@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Weather Journal</title>
+  <link href="https://fonts.googleapis.com/css?family=Bitter&display=swap" rel="stylesheet">
+
+
+  <link rel="shortcut icon" href="./media/favicon.ico">
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <![endif]-->
+<link href="main.css" rel="stylesheet"></head>
+
+<body>
+  <div id="app">
+    <div class="headline">
+      <img src="../media/logo.png" alt="logo">
+    </div>
+    <div class="wrapper">
+    <div id="spinner">
+      <img src="../media/Spin-Preloader.gif" alt="preload">
+    </div>
+    <div id="result"> </div>   
+    </div>
+    <form name="submit-form">
+      <div class="input-holder">
+        <label for="city">location:</label>
+        <input type="text" id="location" placeholder="Enter location" required>
+      </div>
+      <div class="input-holder">
+        <label for="depart-date">depart date:</label>
+        <input type="date" class="date" id="depart-date" value="" min="2020-01-01" max="2050-01-01" required>
+      </div>
+
+      <div class="input-holder">
+        <label for="return-date">return date:</label>
+        <input type="date" class="date" id="return-date" value="" min="2020-01-01" max="2050-01-01" required>
+      </div>
+
+      <button id="generate" type="submit"> Generate </button>
+    </form>
+
+    <div id="error" class="error"></div>
+  </div>
+  <script>
+    // Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+  </script>
+
+
+<script type="text/javascript" src="main.js"></script></body>
+
+</html>

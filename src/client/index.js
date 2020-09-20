@@ -13,5 +13,5 @@ import './media/logo.png';
 import './media/calander.png';
 import './media/location.png';
 import './media/Spin-Preloader.gif'
-import './favicon.ico'
+import './media/favicon.ico'
 export { performAction, formValidate, setIcons, diffDays, forcastWeather };
