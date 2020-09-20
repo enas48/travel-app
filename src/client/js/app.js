@@ -58,7 +58,7 @@ function getTripInfo(location) {
 
 
   //post trip information data to server
-  postData('http://localhost:3000/addTripInfo', {
+  postData('https://cors-anywhere.herokuapp.com/http://localhost:3000/addTripInfo', {
     city: city,
     dayDiff: dayDiff,
     triplength: triplength,
@@ -192,7 +192,7 @@ const getWeather = async data => {
   let lat = data.lat;
   let lng = data.lng;
   // get trip info date from the server to use it
-  const allData = await fetch('http://localhost:3000/all').then(response =>
+  const allData = await fetch('https://cors-anywhere.herokuapp.com/http://localhost:3000/all').then(response =>
     response.json()
   );
   try {
