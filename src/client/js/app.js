@@ -58,7 +58,7 @@ function getTripInfo(location) {
 
 
   //post trip information data to server
-  postData('https://5f64e0ebebdc5c00078a0f52--kind-shaw-0432f0.netlify.app/addTripInfo', {
+  postData('/addTripInfo', {
     city: city,
     dayDiff: dayDiff,
     triplength: triplength,
@@ -192,7 +192,7 @@ const getWeather = async data => {
   let lat = data.lat;
   let lng = data.lng;
   // get trip info date from the server to use it
-  const allData = await fetch('https://5f64e0ebebdc5c00078a0f52--kind-shaw-0432f0.netlify.app/all').then(response =>
+  const allData = await fetch('/all').then(response =>
     response.json()
   );
   try {
