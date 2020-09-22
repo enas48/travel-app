@@ -26,13 +26,13 @@ function performAction(e) {
     result.innerHTML = '';
     result.className = 'result';
     showSpinner();
-    toTopPage();
     getTripInfo(location);
     getImage(location);
     getCountryInfo(location);
     getGeonmaes(location).then(data => {
     getWeather(data);
     });
+toTopPage();
   }
 
 }
