@@ -13,6 +13,10 @@ function showSpinner() {
   }, 5000);
 }
 
+function toTopPage() {
+  let top = 0;
+  window.scrollTo({ top, behavior: 'smooth' });
+} 
 
 function performAction(e) {
   let result = document.getElementById('result');
@@ -22,6 +26,7 @@ function performAction(e) {
     result.innerHTML = '';
     result.className = 'result';
     showSpinner();
+    toTopPage();
     getTripInfo(location);
     getImage(location);
     getCountryInfo(location);
