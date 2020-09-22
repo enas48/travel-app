@@ -22,6 +22,8 @@ function performAction(e) {
     result.innerHTML = '';
     result.className = 'result';
     showSpinner();
+    let wrapper=document.querySelector(".wrapper");
+    wrapper.scrollTop(wrapper.scrollHeight);
     getTripInfo(location);
     getImage(location);
     getCountryInfo(location);
